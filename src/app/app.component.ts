@@ -1,4 +1,6 @@
+import { NgtRenderState } from '@angular-three/core';
 import { Component } from '@angular/core';
+import { Mesh } from 'three';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ang_three';
+  
+  
+
 }
