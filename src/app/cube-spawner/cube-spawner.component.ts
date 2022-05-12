@@ -1,7 +1,7 @@
 import { NgtCanvas, NgtRenderState, NgtStore } from '@angular-three/core';
 import { NgtMesh } from '@angular-three/core/meshes';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { interval, timer } from 'rxjs';
+import { firstValueFrom, interval, timer } from 'rxjs';
 import { Mesh, MeshStandardMaterial, Scene } from 'three';
 import { GeometryService } from '../geometry.service';
 
@@ -25,9 +25,9 @@ export class CubeSpawnerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onCubeReady(cube: Mesh) {
+  async onCubeReady(cube: Mesh) {
     this.cubes.push(cube);
-    const scene = this.store.get(s => s.scene);
+    const scene = await firstValueFrom(this.store.scene$);
     this.spawnCubes(cube, scene);
   }
 

@@ -13,13 +13,15 @@ import { AppComponent } from './app.component';
 import { CubeComponent } from './cube/cube.component';
 import { SphereComponent } from './sphere/sphere.component';
 import { CubeSpawnerComponent } from './cube-spawner/cube-spawner.component';
+import { GeometrySpawnerComponent } from './geometry-spawner/geometry-spawner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CubeComponent,
     SphereComponent,
-    CubeSpawnerComponent
+    CubeSpawnerComponent,
+    GeometrySpawnerComponent
   ],
   imports: [
     BrowserModule,
