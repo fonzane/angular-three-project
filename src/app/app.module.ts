@@ -3,8 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { NgtCanvasModule } from '@angular-three/core';
 import { NgtMeshModule } from '@angular-three/core/meshes';
-import { NgtBoxGeometryModule, NgtCircleGeometryModule, NgtSphereGeometryModule } from '@angular-three/core/geometries';
-import { NgtMeshBasicMaterialModule, NgtMeshStandardMaterialModule } from '@angular-three/core/materials';
+import { 
+  NgtBoxGeometryModule,
+  NgtSphereGeometryModule,
+  NgtRingGeometryModule,
+  NgtTorusGeometryModule,
+  NgtTubeGeometryModule,
+  NgtCircleGeometryModule
+} from '@angular-three/core/geometries';
+import { NgtMeshStandardMaterialModule } from '@angular-three/core/materials';
 import { NgtAmbientLightModule, NgtSpotLightModule, NgtPointLightModule } from '@angular-three/core/lights';
 import { NgtSobaOrbitControlsModule } from '@angular-three/soba/controls';
 
@@ -14,6 +21,7 @@ import { CubeComponent } from './cube/cube.component';
 import { SphereComponent } from './sphere/sphere.component';
 import { CubeSpawnerComponent } from './cube-spawner/cube-spawner.component';
 import { GeometrySpawnerComponent } from './geometry-spawner/geometry-spawner.component';
+import { MovingSpheresComponent } from './moving-spheres/moving-spheres.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +29,8 @@ import { GeometrySpawnerComponent } from './geometry-spawner/geometry-spawner.co
     CubeComponent,
     SphereComponent,
     CubeSpawnerComponent,
-    GeometrySpawnerComponent
+    GeometrySpawnerComponent,
+    MovingSpheresComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +38,12 @@ import { GeometrySpawnerComponent } from './geometry-spawner/geometry-spawner.co
     NgtCanvasModule,
     NgtMeshModule,
     NgtBoxGeometryModule,
-    NgtCircleGeometryModule,
     NgtSphereGeometryModule,
+    NgtRingGeometryModule,
+    NgtTorusGeometryModule,
+    NgtTubeGeometryModule,
     NgtMeshStandardMaterialModule,
+    NgtCircleGeometryModule,
     NgtAmbientLightModule,
     NgtSpotLightModule,
     NgtPointLightModule,
