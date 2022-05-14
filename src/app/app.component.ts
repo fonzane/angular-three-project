@@ -1,6 +1,6 @@
-import { NgtRenderState } from '@angular-three/core';
-import { Component } from '@angular/core';
-import { Mesh } from 'three';
+import { NgtCameraOptions, NgtRenderState, NgtState } from '@angular-three/core';
+import { Component, Input } from '@angular/core';
+import { Mesh, PerspectiveCamera } from 'three';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +9,8 @@ import { Mesh } from 'three';
 })
 export class AppComponent {
   
-  
+  onCanvasCreated(state: NgtState) {
+    
+  }
 
 }
