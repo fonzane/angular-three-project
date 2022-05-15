@@ -2,7 +2,7 @@ import { NgtRenderState, NgtStore } from '@angular-three/core';
 import { NgtMesh } from '@angular-three/core/meshes';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { interval } from 'rxjs';
-import { Euler, Mesh, MeshStandardMaterial, RingGeometry } from 'three';
+import { Euler, Mesh, MeshBasicMaterial, MeshStandardMaterial, RingGeometry } from 'three';
 import { GeometryService } from '../geometry.service';
 
 @Component({
@@ -30,9 +30,10 @@ export class GeometrySpawnerComponent implements OnInit {
     this.rings.push(mesh);
 
     interval(150).subscribe(() => {
-      let clone = mesh.clone();
-      clone.position.z = 0;
-      clone.material = new MeshStandardMaterial({color: this.geometryService.getRandomColor()});
+      let clone = new Mesh(
+        new RingGeometry(0.1, 2),
+        new MeshStandardMaterial({color: this.geometryService.getRandomColor()})
+      );
       clone.rotation.set(0, 0, Math.random()*Math.PI*2);
       scene.add(clone);
       this.rings.push(clone);
@@ -46,8 +47,14 @@ export class GeometrySpawnerComponent implements OnInit {
     // clonedRing.material = new MeshStandardMaterial({color: this.geometryService.getRandomColor()});
 
     this.rings.forEach(r => {
+      let scene = this.store.get(s => s.scene);
       r.position.z += 0.005;
       r.rotation.z += this.xRotationSpeed;
+
+      if (r.position.z >= 5) {
+        scene.remove(r);
+        this.rings.shift();
+      }
     })
 
     // $event.state.scene.add(clonedRing);
