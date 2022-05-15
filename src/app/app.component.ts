@@ -1,6 +1,6 @@
-import { NgtCameraOptions, NgtRenderState, NgtState } from '@angular-three/core';
+import { NgtState } from '@angular-three/core';
 import { Component, Input } from '@angular/core';
-import { Mesh, PerspectiveCamera } from 'three';
+import { TextureLoader } from 'three';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,8 @@ import { Mesh, PerspectiveCamera } from 'three';
 export class AppComponent {
   
   onCanvasCreated(state: NgtState) {
-    
+    let spaceTexture = new TextureLoader().load('../assets/jake-weirick-unsplash-space.jpg');
+    state.scene.background = spaceTexture;
   }
 
 }

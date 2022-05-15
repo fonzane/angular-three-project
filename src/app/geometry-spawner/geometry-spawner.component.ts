@@ -15,6 +15,7 @@ export class GeometrySpawnerComponent implements OnInit {
 
   rings: Mesh[] = [];
   xRotationSpeed = 0.025;
+  zMoveSpeed = 0.01;
 
   constructor(
     private store: NgtStore,
@@ -29,11 +30,12 @@ export class GeometrySpawnerComponent implements OnInit {
     let scene = this.store.get(s => s.scene);
     this.rings.push(mesh);
 
-    interval(150).subscribe(() => {
+    interval(200).subscribe(() => {
       let clone = new Mesh(
-        new RingGeometry(0.1, 2),
+        new RingGeometry(Math.random()*0.5+0.05, 0.5),
         new MeshStandardMaterial({color: this.geometryService.getRandomColor()})
       );
+      clone.position.setZ(2);
       clone.rotation.set(0, 0, Math.random()*Math.PI*2);
       scene.add(clone);
       this.rings.push(clone);
@@ -47,18 +49,17 @@ export class GeometrySpawnerComponent implements OnInit {
     // clonedRing.material = new MeshStandardMaterial({color: this.geometryService.getRandomColor()});
 
     this.rings.forEach(r => {
-      let scene = this.store.get(s => s.scene);
-      r.position.z += 0.005;
+      let scene = $event.state.scene;
+      r.position.z += this.zMoveSpeed;
       r.rotation.z += this.xRotationSpeed;
 
       if (r.position.z >= 5) {
+        this.zMoveSpeed = 0.0035;
         scene.remove(r);
         this.rings.shift();
       }
     })
 
-    // $event.state.scene.add(clonedRing);
-    // this.rings.push(clonedRing);
   }
 
 }
