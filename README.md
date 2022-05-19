@@ -1,6 +1,4 @@
-## A live example can be found on freedom-of-mind.de
-
-# AngThree
+# A live example can be found [here](https://freedom-of-mind.de) 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
 
