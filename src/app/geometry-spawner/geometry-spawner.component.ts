@@ -13,8 +13,8 @@ import { GeometryService } from '../geometry.service';
 export class GeometrySpawnerComponent implements OnInit {
   @ViewChild('mesh')mesh?: Mesh
 
-  rings: Mesh[] = [];
-  xRotationSpeed = 0.025;
+  rings: Mesh<RingGeometry, MeshStandardMaterial>[] = [];
+  xRotationSpeed = 0.015;
   zMoveSpeed = 0.01;
 
   constructor(
@@ -28,19 +28,20 @@ export class GeometrySpawnerComponent implements OnInit {
 
   async onMeshReady(mesh: Mesh) {
     let scene = this.store.get(s => s.scene);
-    this.rings.push(mesh);
+    this.rings.push(mesh as CustomRing);
 
     interval(200).subscribe(() => {
       let clone = new Mesh(
-        new RingGeometry(Math.random()*0.5+0.05, 0.5),
-        new MeshStandardMaterial({color: this.geometryService.getRandomColor()})
-      );
+        new RingGeometry(Math.random()*0.5+0.025, Math.random()*0.5),
+        new MeshStandardMaterial({color: this.geometryService.getRandomColor(), opacity: Math.random(), transparent: true})
+      ) as CustomRing;
       clone.position.setZ(2);
       clone.rotation.set(0, 0, Math.random()*Math.PI*2);
+      clone.rotationSpeed = Math.random() > 0.5 ? Math.random() * this.xRotationSpeed +0.01: -Math.random()*this.xRotationSpeed+0.01;
       scene.add(clone);
       this.rings.push(clone);
     })
-    interval(1500).subscribe(() => this.xRotationSpeed = Math.random() > 0.5 ? -Math.random()*0.025 : Math.random()*0.025);
+    // interval(1500).subscribe(() => this.xRotationSpeed = Math.random() > 0.5 ? -Math.random()*0.025 : Math.random()*0.025);
   }
 
   async onMeshBeforeRender($event: {state: NgtRenderState, object: Mesh}) {
@@ -48,10 +49,11 @@ export class GeometrySpawnerComponent implements OnInit {
     // clonedRing.position.z = -20;
     // clonedRing.material = new MeshStandardMaterial({color: this.geometryService.getRandomColor()});
 
-    this.rings.forEach(r => {
+    this.rings.forEach((r: CustomRing) => {
       let scene = $event.state.scene;
       r.position.z += this.zMoveSpeed;
-      r.rotation.z += this.xRotationSpeed;
+      r.rotation.z += r.rotationSpeed!
+      
 
       if (r.position.z >= 5) {
         this.zMoveSpeed = 0.0035;
@@ -62,4 +64,8 @@ export class GeometrySpawnerComponent implements OnInit {
 
   }
 
+}
+
+interface CustomRing extends Mesh<RingGeometry, MeshStandardMaterial> {
+  rotationSpeed?: number;
 }

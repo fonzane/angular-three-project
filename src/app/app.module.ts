@@ -22,6 +22,7 @@ import { SphereComponent } from './sphere/sphere.component';
 import { CubeSpawnerComponent } from './cube-spawner/cube-spawner.component';
 import { GeometrySpawnerComponent } from './geometry-spawner/geometry-spawner.component';
 import { MovingSpheresComponent } from './moving-spheres/moving-spheres.component';
+import { SpaceComponent } from './space/space.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MovingSpheresComponent } from './moving-spheres/moving-spheres.componen
     SphereComponent,
     CubeSpawnerComponent,
     GeometrySpawnerComponent,
-    MovingSpheresComponent
+    MovingSpheresComponent,
+    SpaceComponent
   ],
   imports: [
     BrowserModule,
