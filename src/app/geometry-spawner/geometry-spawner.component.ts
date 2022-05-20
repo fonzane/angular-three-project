@@ -14,7 +14,7 @@ export class GeometrySpawnerComponent implements OnInit {
   @ViewChild('mesh')mesh?: Mesh
 
   rings: Mesh<RingGeometry, MeshStandardMaterial>[] = [];
-  xRotationSpeed = 0.015;
+  xRotationSpeed = 0.02;
   zMoveSpeed = 0.01;
 
   constructor(
@@ -33,11 +33,11 @@ export class GeometrySpawnerComponent implements OnInit {
     interval(200).subscribe(() => {
       let clone = new Mesh(
         new RingGeometry(Math.random()*0.5+0.025, Math.random()*0.5),
-        new MeshStandardMaterial({color: this.geometryService.getRandomColor(), opacity: Math.random(), transparent: true})
+        new MeshStandardMaterial({color: this.geometryService.getRandomColor(), opacity: Math.random()*0.75+0.2, transparent: true})
       ) as CustomRing;
       clone.position.setZ(2);
       clone.rotation.set(0, 0, Math.random()*Math.PI*2);
-      clone.rotationSpeed = Math.random() > 0.5 ? Math.random() * this.xRotationSpeed +0.01: -Math.random()*this.xRotationSpeed+0.01;
+      clone.rotationSpeed = Math.random() > 0.5 ? Math.random() * this.xRotationSpeed +0.005: -(Math.random()*this.xRotationSpeed+0.005);
       scene.add(clone);
       this.rings.push(clone);
     })
