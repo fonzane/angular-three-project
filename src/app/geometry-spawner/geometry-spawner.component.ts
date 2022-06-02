@@ -1,8 +1,8 @@
 import { NgtRenderState, NgtStore } from '@angular-three/core';
-import { NgtMesh } from '@angular-three/core/meshes';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { interval } from 'rxjs';
-import { Euler, Mesh, MeshBasicMaterial, MeshStandardMaterial, RingGeometry } from 'three';
+import { interval, timer } from 'rxjs';
+import { Euler, Group, Mesh, MeshBasicMaterial, MeshStandardMaterial, RingGeometry } from 'three';
+import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { GeometryService } from '../geometry.service';
 
 @Component({
@@ -14,6 +14,8 @@ export class GeometrySpawnerComponent implements OnInit {
   @ViewChild('mesh')mesh?: Mesh
 
   rings: Mesh<RingGeometry, MeshStandardMaterial>[] = [];
+  loader: GLTFLoader = new GLTFLoader();
+  xwing?: Group;
   xRotationSpeed = 0.02;
   zMoveSpeed = 0.01;
 
@@ -61,6 +63,8 @@ export class GeometrySpawnerComponent implements OnInit {
         this.rings.shift();
       }
     })
+
+    if(this.xwing) this.xwing.position.z -= 0.5;
 
   }
 
