@@ -1,7 +1,7 @@
 import { NgtRenderState, NgtStore } from '@angular-three/core';
 import { Component, OnInit } from '@angular/core';
 import { interval, timer } from 'rxjs';
-import { Group, Mesh } from 'three';
+import { Group, MathUtils, Mesh } from 'three';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 @Component({
@@ -14,6 +14,7 @@ export class XWingComponent {
   loader: GLTFLoader = new GLTFLoader();
   xwing?: Group;
   xwingRotateSpeedZ = 0.015;
+  xwingMoveSpeedY = 0.7;
   xwingMoveSpeedZ = -0.7;
   xwingLookAtZ = -10000;
 
@@ -37,11 +38,9 @@ export class XWingComponent {
     })
 
     interval(7000).subscribe(() => {
-      this.xwingLookAtZ = -this.xwingLookAtZ;
-      this.xwingMoveSpeedZ = -this.xwingMoveSpeedZ;
 
       if (this.xwing) {
-        this.xwing.lookAt(0,0,this.xwingLookAtZ);
+        // this.xwing.lookAt(0,0,this.xwingLookAtZ);
       }
     })
   }
@@ -50,8 +49,13 @@ export class XWingComponent {
 
     if(this.xwing) {
       this.xwing.position.z += this.xwingMoveSpeedZ;
+      this.xwing.position.y += this.xwingMoveSpeedY;
+      this.xwing.lookAt(this.xwing.position.x,this.xwing.position.y+this.xwingMoveSpeedY,this.xwing.position.z+this.xwingMoveSpeedZ);
       // this.xwing.rotation.z += this.xwingRotateSpeedZ;
     }
+
+    // this.xwingMoveSpeedY -= 0.001;
+    // this.xwingMoveSpeedZ -= 0.001;
 
   }
 
