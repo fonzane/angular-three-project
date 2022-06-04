@@ -17,7 +17,7 @@
     <app-cube-spawner [canvas]="canvas"></app-cube-spawner> -->
 
     v0.3
-    <app-geometry-spawner></app-geometry-spawner>
+    <app-geometry-spawner [blog-link]="blogLink"></app-geometry-spawner>
 
     <!-- v0.4
     <app-moving-spheres></app-moving-spheres> -->
@@ -28,10 +28,10 @@
     <!-- v0.6
     <app-x-wing></app-x-wing> -->
 
-    <ngt-soba-orbit-controls></ngt-soba-orbit-controls>
+    <!-- <ngt-soba-orbit-controls></ngt-soba-orbit-controls> -->
   </ngt-canvas>
 </div>
-<audio controls autoplay>
+<audio controls>
   <source src="../assets/Linkin Park - In The End remix.mp3" type="audio/mpeg">
 </audio>
-<a href="/blog">Blog</a>
+<a href="/blog" id="blog-link" #blogLink>Blog</a>
