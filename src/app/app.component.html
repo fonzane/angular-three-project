@@ -1,7 +1,8 @@
 <div class="canvas-container">
   <ngt-canvas
     style="background-color: 'black';"
-    (created)="onCanvasCreated($event)">
+    (created)="onCanvasCreated($event)"
+    #canvas>
     <ngt-ambient-light intensity="0.5"></ngt-ambient-light>
     <ngt-spot-light [position]="10" angle="1" penumbra="1"></ngt-spot-light>
     <ngt-point-light [position]="-10"></ngt-point-light>
@@ -13,7 +14,8 @@
     <app-cube [position]="[0, 1.2, 0]"></app-cube>
     <app-cube [position]="[0, -1.2, 0]"></app-cube> -->
 
-    <!-- v0.2
+
+    <!-- v0.2 X-WINGS
     <app-cube-spawner [canvas]="canvas"></app-cube-spawner> -->
 
     v0.3

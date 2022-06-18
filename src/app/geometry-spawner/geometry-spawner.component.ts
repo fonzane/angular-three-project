@@ -45,26 +45,26 @@ export class GeometrySpawnerComponent implements OnInit {
       scene.add(clone);
       this.rings.push(clone);
     });
-    if(this.blogLink) {
-      this.blogLink.style.right = "0px";
-      this.blogLink.style.top = "0px";
-      timer(1000).subscribe(() => {
-        interval(4000).subscribe(() => {
-          this.blogLink!.style.right = "0px";
-          this.blogLink!.style.top = "0px";
-          this.blogLink!.innerHTML = "Blog";
-          this.blogLink!.style.boxShadow = "0 0 2px 2px white";
-        })
-      })
-      interval(4000).subscribe(() => {
-        this.blogLink!.style.top = MathUtils.randInt(0, window.innerHeight) + "px";
-        this.blogLink!.style.right = MathUtils.randInt(0, window.innerWidth) + "px";
-        this.blogLink!.innerHTML = this.trollEmojis[MathUtils.randInt(0, this.trollEmojis.length-1)];
-        let boxShadow = `0 0 ${Math.random()*5+2}px ${Math.random()*5+2}px rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255})`;
-        this.blogLink!.style.boxShadow = boxShadow;
-        console.log(this.blogLink?.style.boxShadow, boxShadow);
-      });
-    };
+    // if(this.blogLink) {
+    //   this.blogLink.style.right = "0px";
+    //   this.blogLink.style.top = "0px";
+    //   timer(1000).subscribe(() => {
+    //     interval(4000).subscribe(() => {
+    //       this.blogLink!.style.right = "0px";
+    //       this.blogLink!.style.top = "0px";
+    //       this.blogLink!.innerHTML = "Blog";
+    //       this.blogLink!.style.boxShadow = "0 0 2px 2px white";
+    //     })
+    //   })
+    //   interval(4000).subscribe(() => {
+    //     this.blogLink!.style.top = MathUtils.randInt(0, window.innerHeight) + "px";
+    //     this.blogLink!.style.right = MathUtils.randInt(0, window.innerWidth) + "px";
+    //     this.blogLink!.innerHTML = this.trollEmojis[MathUtils.randInt(0, this.trollEmojis.length-1)];
+    //     let boxShadow = `0 0 ${Math.random()*5+2}px ${Math.random()*5+2}px rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255})`;
+    //     this.blogLink!.style.boxShadow = boxShadow;
+    //     console.log(this.blogLink?.style.boxShadow, boxShadow);
+    //   });
+    // };
   }
 
   async onMeshBeforeRender($event: {state: NgtRenderState, object: Mesh}) {
